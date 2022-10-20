@@ -2,13 +2,21 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 from os.path import exists
 from pathlib import Path
+import actions.action
 
+import actions.action as action
+dict = []
 
 class WebServer(BaseHTTPRequestHandler):
 
     # Disable logging of WebServer to console
     def log_message(self, format: str, *args):
         return
+
+    def do_POST(self):
+        
+        self.path
+
 
     def do_GET(self):
         # print(self.path)
@@ -49,8 +57,6 @@ class WebServer(BaseHTTPRequestHandler):
 
 def runServer(host_name, port):
     webServer = HTTPServer((host_name, port), WebServer)
-
-
     try:
         print(f"Started server: http://{host_name}:{port}/")
         webServer.serve_forever()
